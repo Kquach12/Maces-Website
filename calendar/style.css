@@ -173,11 +173,9 @@ body::before {
   text-align: center;
   position: relative;
   color: white;
-  color: rgb(21, 121, 21);
-  border-bottom: 5px solid rgb(0, 0, 49);
-  border-top: 5px solid rgb(0, 0, 49);
+  color: rgb(0, 0, 49);
+  border: 5px solid rgb(21, 121, 21);
   background-color: white;
-  font-weight: normal;
 }
 
 .announcements-subheader{
