@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color: rgb(228, 228, 228);">
+        <!--                                NAVBAR                                                                         -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white d-flex justify-content-between border-navy">
+        <div class="d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="#"><img src="../static/images/logo.png" class="logo"></a>
+            <div class="d-flex justify-content-between ml-2">
+                <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Home</a> |
+                <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Roster</a> |
+                <a href="./schedule.html" class="ml-2 mr-2 font-weight-bold navbar-link">Schedule</a> |
+                <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Merchandise</a>
+            </div>
+        </div>
+        <div class="my-2 my-lg-0">
+            <a href="#" class="font-weight-bold navbar-link">Login</a>
+        </div>
+    </nav>
+
+    <!--                                NAVBAR END                                                                         -->
+    <div class="container">
+        <div class="row">
+            <div class="col form-group">
+                <h2>Register</h2>
+                <form action="/register" method="POST">
+                    <label for="first_name">First Name: </label>
+                    <input type="text" name="first_name" class="form-control">
+                    <label for="last_name">Last Name: </label>
+                    <input type="text" name="last_name" class="form-control">
+                    <label for="email">Email: </label>
+                    <input type="text" name="email" class="form-control">
+                    <label for="password">Password: </label>
+                    <input type="password" name="password" class="form-control">
+                    <label for="confirm_password">Confirm Password: </label>
+                    <input type="password" name="confirm_password" class="form-control">
+                    <input type="submit" value = "Register" class="btn btn-outline-secondary mt-2">
+                </form>
+                <!-- {% with messages = get_flashed_messages(category_filter = ['register']) %}   
+                    {% if messages %}                       
+                        {% for message in messages %}        
+                            <p>{{message}}</p>                
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %} -->
+            </div>
+
+            <div class="col">
+                <h2>Login</h2>
+                <form action="/login" method="POST">
+                    <label for="email">Email: </label>
+                    <input type="text" name="email" class="form-control">
+                    <label for="password">Password: </label>
+                    <input type="password" name="password" class="form-control">
+                    <input type="submit" value = "Login" class="btn btn-outline-secondary mt-2">
+                </form>
+                <!-- {% with messages = get_flashed_messages(category_filter = ['login']) %}    
+                    {% if messages %}                          
+                        {% for message in messages %}           
+                            <p>{{message}}</p>                 
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %} -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -10,7 +10,7 @@ body {
 
 body::before {    
     content: "";
-    background-image: url('images/logo2.PNG');
+    background-image: url('../images/logo2.PNG');
     background-size: 300px;
     position: absolute;
     top: 104px;
