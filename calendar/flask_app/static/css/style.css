@@ -183,3 +183,13 @@ body::before {
   text-align: center;
   margin-top: 40px;
 }
+
+/*fixes margin-bottom on h3 on roster page*/
+h3{
+  margin: 0;
+}
+
+/*  */
+.auth-forms{
+  margin-top: 4em;
+}
