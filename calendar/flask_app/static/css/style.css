@@ -188,3 +188,8 @@ body::before {
 h3{
   margin: 0;
 }
+
+/*  */
+.auth-forms{
+  margin-top: 4em;
+}
