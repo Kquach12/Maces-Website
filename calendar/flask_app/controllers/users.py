@@ -2,9 +2,11 @@ from flask import Flask, render_template, redirect, request, session, flash
 from flask_app import app
 from flask_app.models.user import User
 from flask_bcrypt import Bcrypt
+from flask_app.models.game import Game
+
 bcrypt = Bcrypt(app)
 
-@app.route('/')
+@app.route('/login')
 def login_page():
     return render_template('login.html')
 
@@ -30,18 +32,18 @@ def register_user():
 def login():
     if not User.validate_login(request.form):
         # we redirect to the template with the form.
-        return redirect('/')
+        return redirect('/login')
     # see if the username provided exists in the database
     data = { "email" : request.form["email"] }
     user_in_db = User.get_by_email(data)
     # user is not registered in the db
     if not user_in_db:
         flash("Invalid Email/Password", "login")
-        return redirect("/")
+        return redirect("/login")
     if not bcrypt.check_password_hash(user_in_db.password, request.form['password']):
         # if we get False after checking the password
         flash("Invalid Email/Password", "login")
-        return redirect('/')
+        return redirect('/login')
     # if the passwords matched, we set the user_id into session
     session['user_id'] = user_in_db.id
     # never render on a post!!!
@@ -54,6 +56,7 @@ def logout():
     return redirect('/')
 
 
-@app.route('/home')
+@app.route('/')
 def home():
-    return render_template("home.html")
+    games = Game.get_all()
+    return render_template("home.html", games = games)

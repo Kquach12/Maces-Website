@@ -15,14 +15,14 @@
         <div class="d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="#"><img src="../static/images/logo.png" class="logo"></a>
             <div class="d-flex justify-content-between ml-2">
-                <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Home</a> |
-                <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Roster</a> |
-                <a href="./schedule.html" class="ml-2 mr-2 font-weight-bold navbar-link">Schedule</a> |
+                <a href="/" class="ml-2 mr-2 font-weight-bold navbar-link">Home</a> |
+                <a href="/roster" class="ml-2 mr-2 font-weight-bold navbar-link">Roster</a> |
+                <a href="/schedule" class="ml-2 mr-2 font-weight-bold navbar-link">Schedule</a> |
                 <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Merchandise</a>
             </div>
         </div>
         <div class="my-2 my-lg-0">
-            <a href="#" class="font-weight-bold navbar-link">Login</a>
+            <a href="/login" class="font-weight-bold navbar-link">Login</a>
         </div>
     </nav>
 
@@ -73,18 +73,6 @@
                 </div>
             </div>
 
-            <div class="col">
-                <div class="individual-game">
-                    <img src="../static/images/logo2.png" alt="home">
-                    <div class="individual-game-description">
-                        <h3 class="title">Garfield</h3>
-                        <div>
-                            <h5>JV: 2:30</h5>
-                            <h5>Varsity: 4:00</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="col">
                 <div class="individual-game-away">
@@ -99,7 +87,29 @@
                 </div>
             </div>
 
+            {% for game in games %}
+    
+                <div class="col">
+                    {% if game.location == 'home' %}
+                    <div class="individual-game">
+                    {%else%}
+                    <div class="individual-game-away">
+                    {% endif %}
+                        <img src="../static/images/logo2.png" alt="home">
+                        <div class="individual-game-description">
+                            <h3 class="title">{{game.opponent}}</h3>
+                            <div>
+                                <h5>{{game.level}}</h5>
+                                <h5>{{game.time}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+            {% endfor %}
         </div>
+
+
         
         <!--                                UPCOMING GAMES END                                                                         -->
     </div>
