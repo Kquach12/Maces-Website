@@ -13,6 +13,7 @@ class Game:
         self.level = data['level']
         self.maces_score = data['maces_score']
         self.opponent_score = data['opponent_score']
+        self.outcome = data['outcome']
         self.type = data['type']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
@@ -29,7 +30,7 @@ class Game:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO games (location, opponent, date, time, level, outcome, maces_score, opponent_score, type, created_at, updated_at, season_id ) VALUES (%(location)s, %(opponent)s, %(date)s, %(time)s, %(level)s, %(outcome)s, %(maces_score)s, %(opponent_score)s, %(type)s, NOW() , NOW(), %(season_id)s);"
+        query = "INSERT INTO games (location, opponent, date, time, level, maces_score, opponent_score, outcome, type, created_at, updated_at, season_id ) VALUES (%(location)s, %(opponent)s, %(date)s, %(time)s, %(level)s, %(maces_score)s, %(opponent_score)s, %(outcome)s, %(type)s, NOW() , NOW(), %(season_id)s);"
         return connectToMySQL('maces_schema').query_db( query, data )
 
     @classmethod
