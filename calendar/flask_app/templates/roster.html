@@ -22,14 +22,14 @@
         <div class="d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="#"><img src="../static/images/logo.png" class="logo"></a>
             <div class="d-flex justify-content-between ml-2">
-                <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Home</a> |
-                <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Roster</a> |
-                <a href="./schedule.html" class="ml-2 mr-2 font-weight-bold navbar-link">Schedule</a> |
+                <a href="/" class="ml-2 mr-2 font-weight-bold navbar-link">Home</a> |
+                <a href="/roster" class="ml-2 mr-2 font-weight-bold navbar-link">Roster</a> |
+                <a href="/schedule" class="ml-2 mr-2 font-weight-bold navbar-link">Schedule</a> |
                 <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Merchandise</a>
             </div>
         </div>
         <div class="my-2 my-lg-0">
-            <a href="#" class="font-weight-bold navbar-link">Login</a>
+            <a href="/login" class="font-weight-bold navbar-link">Login</a>
         </div>
     </nav>
 
@@ -269,6 +269,63 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <!--JUNIOR VARSITY TEAM-->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <h3>Testing Database </h3>
+                  </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                    data-bs-parent="#accordionExample">
+
+                    <!-- PLAYER GRID -->
+                    <div class="container">
+                        <div class="row">
+                            {% for player in players%}
+                            
+                            <div class="col">
+                                <div class="card col" style="width: 14rem;" data-bs-toggle="modal"
+                                    data-bs-target="{{'#player_modal' + player.id|string}}">
+                                    <img
+                                        src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842">
+                                    <div class="card-body">
+                                        <h3>{{player.first_name}} {{player.last_name}}</h3>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="{{'player_modal' + player.id|string}}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">{{player.first_name}} {{player.last_name}} {{player.number}}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842"
+                                                            width="300px">
+
+                                                        <p>{{player.description}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% endfor %}
 
 
                         </div>
