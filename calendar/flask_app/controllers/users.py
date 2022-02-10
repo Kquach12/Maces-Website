@@ -25,7 +25,7 @@ def register_user():
     }
     user_id = User.save(data)
     session['user_id'] = user_id
-    return redirect('/dashboard')
+    return redirect('/')
 
 
 @app.route('/login', methods=['POST'])
@@ -47,7 +47,7 @@ def login():
     # if the passwords matched, we set the user_id into session
     session['user_id'] = user_in_db.id
     # never render on a post!!!
-    return redirect("/home")
+    return redirect("/")
 
 
 @app.route('/logout')
@@ -58,5 +58,11 @@ def logout():
 
 @app.route('/')
 def home():
+    user = None
+    if 'user_id' in session:
+        data = {
+            "id": session['user_id']
+        }
+        user = User.get_one(data)
     games = Game.get_all()
-    return render_template("home.html", games = games)
+    return render_template("home.html", games = games, user = user)

@@ -18,10 +18,18 @@
                 <a href="/roster" class="ml-2 mr-2 font-weight-bold navbar-link">Roster</a> |
                 <a href="/schedule" class="ml-2 mr-2 font-weight-bold navbar-link">Schedule</a> |
                 <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Merchandise</a>
+                {% if user != None %}
+                    | <a href="/announcements" class="ml-2 mr-2 font-weight-bold navbar-link">Announcements</a> |
+                    <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Stats</a> 
+                {% endif %}
             </div>
         </div>
         <div class="my-2 my-lg-0">
-            <a href="/login" class="font-weight-bold navbar-link">Login</a>
+                {% if user != None %}
+                <a href="/logout" class="font-weight-bold navbar-link">Logout</a>
+                {% else %}
+                <a href="/login" class="font-weight-bold navbar-link">Login</a>
+                {% endif %}
         </div>
     </nav>
 
