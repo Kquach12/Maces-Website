@@ -29,6 +29,15 @@ class Game:
         return games
 
     @classmethod
+    def get_all_in_season(cls):
+        query = "SELECT * FROM games WHERE season_id=%(season_id)s;"
+        results = connectToMySQL('maces_schema').query_db(query)
+        games = []
+        for game in results:
+            games.append( cls(game) )
+        return games
+
+    @classmethod
     def save(cls, data):
         query = "INSERT INTO games (location, opponent, date, time, level, maces_score, opponent_score, outcome, type, created_at, updated_at, season_id ) VALUES (%(location)s, %(opponent)s, %(date)s, %(time)s, %(level)s, %(maces_score)s, %(opponent_score)s, %(outcome)s, %(type)s, NOW() , NOW(), %(season_id)s);"
         return connectToMySQL('maces_schema').query_db( query, data )
