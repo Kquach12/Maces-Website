@@ -113,7 +113,29 @@
                 <h5>4:00PM</h5>
             </div>
         </div>
+
+        <!-- From Database -->
+        {% for game in games %}
+        {% if game.location == 'home'%}
+            <div class="schedule-game-home d-flex justify-content-between align-items-center mb-3">
+        {% else %}
+            <div class="schedule-game-away d-flex justify-content-between align-items-center mb-3">
+        {% endif %}
+                <span class="d-flex justify-content-center align-items-center">
+                    <img src="../static/images/logo2.PNG" alt="" style="width: 100px;">
+                    <div class="ml-5">
+                        <h3>{{game.opponent}}</h3>
+                        <h5>{{game.level}}</h5>
+                    </div>
+                </span>
+                <div>
+                    <h5>{{game.date}}</h5>
+                    <h5>{{game.time}}</h5>
+                </div>
+            </div>
+        {% endfor %}
     </div>
+
     
         <!--                                TITLE AND BANNER IMAGE END                                                                         -->
 </body>

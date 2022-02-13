@@ -30,10 +30,10 @@ class Game:
 
     @classmethod
     def get_all_in_season(cls, data):
-        query = "SELECT * FROM games WHERE season_id=%(season_id)s;"
-        results = connectToMySQL('maces_schema').query_db(query)
+        query = "SELECT * FROM games WHERE season_id= %(season_id)s;"
+        results = connectToMySQL('maces_schema').query_db(query, data)
         games = []
-        if len(games) > 0:
+        if len(results) > 0:
             for game in results:
                 games.append( cls(game) )
         return games
