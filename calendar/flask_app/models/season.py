@@ -35,7 +35,7 @@ class Season:
     @classmethod
     def get_most_recent(cls):
         query = "SELECT * FROM seasons ORDER BY id DESC LIMIT 1;"
-        results = connectToMySQL('maces_schema').query_db(query, data)
+        results = connectToMySQL('maces_schema').query_db(query)
         return cls(results[0])
     
         
