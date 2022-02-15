@@ -26,7 +26,7 @@ class Player:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO players (first_name, last_name, number, level, description, created_at, updated_at ) VALUES (%(first_name)s, %(last_name)s, %(number)s, %(level)s, %(description)s, NOW() , NOW() );"
+        query = "INSERT INTO players (first_name, last_name, number, level, description, created_at, updated_at, season_id ) VALUES (%(first_name)s, %(last_name)s, %(number)s, %(level)s, %(description)s, NOW() , NOW(), %(season_id)s );"
         return connectToMySQL('maces_schema').query_db( query, data )
 
     @classmethod
