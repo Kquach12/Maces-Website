@@ -8,7 +8,13 @@ bcrypt = Bcrypt(app)
 
 @app.route('/login')
 def login_page():
-    return render_template('login.html')
+    user = None
+    if 'user_id' in session:
+        data = {
+            "id": session['user_id']
+        }
+        user = User.get_one(data)
+    return render_template('login.html', user = user)
 
 @app.route('/register', methods = ["POST"])
 def register_user():
