@@ -9,15 +9,17 @@ from flask_app.models.user import User
 @app.route('/schedule')
 def schedule():
     user = None
+    games = None
     if 'user_id' in session:
         data = {
             "id": session['user_id']
         }
         user = User.get_one(data)
     season = Season.get_most_recent()
-    data ={
-        'season_id': season.id
-    }
-    games = Game.get_all_in_season(data)
+    if season:
+        data ={
+            'season_id': season.id
+        }
+        games = Game.get_all_in_season(data)
     return render_template('schedule.html', games = games, user = user)
 
