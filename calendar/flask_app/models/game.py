@@ -1,6 +1,8 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 import re
 from flask import flash 
+from flask_app.models import note
+
 
 
 class Game:
@@ -18,6 +20,8 @@ class Game:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.season_id = data['season_id']
+        self.notes = []
+
 
     @classmethod
     def get_all(cls):
@@ -30,7 +34,7 @@ class Game:
 
     @classmethod
     def get_all_in_season(cls, data):
-        query = "SELECT * FROM games WHERE season_id= %(season_id)s;"
+        query = "SELECT * FROM games WHERE season_id= %(season_id)s ORDER BY id ASC;"
         results = connectToMySQL('maces_schema').query_db(query, data)
         games = []
         if len(results) > 0:
