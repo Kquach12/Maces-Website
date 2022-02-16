@@ -1,18 +1,18 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 import re
 from flask import flash 
-
+from flask_app.models import game
 
 class Note:
     def __init__( self , data ):
         self.id = data['id']
         self.notes = data['notes']
-        self.created_at = data['created_at']
-        self.updated_at = data['updated_at']
+        self.game_id = data['game_id']
+        self.games = []
 
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM notes;"
+        query = "SELECT * FROM notes ORDER BY game_id ASC;"
         results = connectToMySQL('maces_schema').query_db(query)
         notes = []
         for note in results:
@@ -21,7 +21,7 @@ class Note:
 
     @classmethod
     def save(cls, data):
-        query = "INSERT INTO notes (notes, created_at, updated_at ) VALUES (%(notes)s, NOW() , NOW() );"
+        query = "INSERT INTO notes (notes, game_id ) VALUES (%(notes)s, %(game_id)s );"
         return connectToMySQL('maces_schema').query_db( query, data )
 
     @classmethod
