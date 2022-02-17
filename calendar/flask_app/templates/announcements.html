@@ -24,18 +24,13 @@
                 <a href="/roster" class="ml-2 mr-2 font-weight-bold navbar-link">Roster</a> |
                 <a href="/schedule" class="ml-2 mr-2 font-weight-bold navbar-link">Schedule</a> |
                 <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Merchandise</a>
-                {% if user != None %}
-                    | <a href="/announcements" class="ml-2 mr-2 font-weight-bold navbar-link">Announcements</a> |
-                    <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Stats</a> 
-                {% endif %}
+                | <a href="/announcements" class="ml-2 mr-2 font-weight-bold navbar-link">Announcements</a> |
+                <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Stats</a> 
             </div>
         </div>
         <div class="my-2 my-lg-0">
-                {% if user != None %}
-                <a href="/logout" class="font-weight-bold navbar-link">Logout</a>
-                {% else %}
-                <a href="/login" class="font-weight-bold navbar-link">Login</a>
-                {% endif %}
+            <a href="/logout" class="font-weight-bold navbar-link">Logout</a>
+                
         </div>
     </nav>
 
@@ -75,7 +70,7 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="{{'#panel' + game.id|string}}">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="{{'#panel' + game.id|string}}" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-                                    {{game.opponent}}
+                                    {{game.opponent}} - {{game.date}}
                                 </button>
                             </h2>
                             <div id="{{'panel' + game.id|string}}" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
@@ -104,7 +99,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        {% for reminder in reminders%}
+                            <tr>
+                                <th>{{reminder.subject}}</th>
+                                <td>{{reminder.text}}</td>
+                                <td>{{reminder.created_at.strftime('%m-%d-%Y')}}</td>
+                            </tr>
+                        {% endfor %}
+                        <!-- <tr>
                             <th>Grades</th>
                             <td>Don't forget to not fail your classes</td>
                             <td>12/10/21</td>
@@ -118,7 +120,7 @@
                             <th>Grades</th>
                             <td>Don't forget to not fail your classes</td>
                             <td>12/10/21</td>
-                        </tr>
+                        </tr> -->
                         
                     </tbody>
                 </table>

@@ -4,6 +4,7 @@ from flask_app.models.note import Note
 from flask_app.models.user import User
 from flask_app.models.season import Season
 from flask_app.models.game import Game
+from flask_app.models.reminder import Reminder
 
 
 
@@ -12,16 +13,15 @@ def announcements():
     user = None
     notes = None
     season = Season.get_most_recent()
-    if 'user_id' in session:
-        data = {
-            "id": session['user_id']
-        }
-        user = User.get_one(data)
+    if 'user_id' not in session:
+        redirect('/')
+
     if season:
         data ={
             'season_id': season.id
         }
         games = Game.get_all_in_season(data)
+        reminders = Reminder.get_all()
         # notes = Note.get_all_in_season_with_games(data)
         notes = Note.get_all()
         print(games)
@@ -38,5 +38,5 @@ def announcements():
                 noteIdx += 1
 
 
-    return render_template('announcements.html', user = user, games = games)
+    return render_template('announcements.html', games = games, reminders = reminders)
 
