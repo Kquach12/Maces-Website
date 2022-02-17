@@ -107,7 +107,11 @@
                         <div class="individual-game-description">
                             <h3 class="title">{{game.opponent}}</h3>
                             <div>
-                                <h5>{{game.level}}</h5>
+                                {% if game.level ==0%}
+                                    <h5>Varsity</h5>
+                                {% else %}
+                                    <h5>JV</h5>
+                                {% endif %}
                                 <h5>{{game.time}}</h5>
                             </div>
                         </div>

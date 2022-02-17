@@ -70,5 +70,5 @@ def home():
             "id": session['user_id']
         }
         user = User.get_one(data)
-    games = Game.get_all()
+    games = Game.get_upcoming_in_season()
     return render_template("home.html", games = games, user = user)
