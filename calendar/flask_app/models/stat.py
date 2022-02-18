@@ -1,6 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 import re
-from flask import flash 
+from flask import flash
+from flask_app.models import player
 
 
 class Stat:
@@ -18,6 +19,7 @@ class Stat:
         self.updated_at = data['updated_at']
         self.game_id = data['game_id']
         self.player_id = data['player_id']
+        self.player = None
 
     @classmethod
     def get_all(cls):
@@ -26,6 +28,28 @@ class Stat:
         stats = []
         for stat in results:
             stats.append( cls(stat) )
+        return stats
+
+    @classmethod
+    def get_average_of_all_players_by_season(cls, data):
+        query = "SELECT stats.id, AVG(points) AS points, AVG(rebounds) AS rebounds, AVG(assists) AS assists, AVG(steals) AS steals, AVG(blocks) AS blocks, AVG(turnovers) AS turnovers, AVG(made_shots) AS made_shots, AVG(attempted_shots) AS attempted_shots, first_name, last_name, number, stats.created_at, stats.updated_at, player_id, game_id, season_id  FROM stats LEFT JOIN players ON stats.player_id = players.id WHERE season_id = %(season_id)s GROUP BY player_id;"
+        results = connectToMySQL('maces_schema').query_db(query,data)
+        stats = []
+        for i in range(len(results)):
+            stats.append(cls(results[i]))
+            p = {
+                'id': results[i]['player_id'],
+                'first_name': results[i]['first_name'],
+                'last_name': results[i]['last_name'],
+                'number': results[i]['number'],
+                'level': None,
+                'description': None,
+                'created_at': None,
+                'updated_at': None,
+                'season_id': results[i]['season_id']
+            }
+            stats[i].player = player.Player(p)
+            
         return stats
 
     @classmethod
