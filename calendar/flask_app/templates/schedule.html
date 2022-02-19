@@ -44,11 +44,11 @@
         <div class="d-flex justify-content-center align-items-center">
             <div class="record mt-2">
                 <p>Overall</p>
-                <h2>8 - 0</h2>
+                <h2>{{record.wins}} - {{record.losses}}</h2>
             </div>
             <div class="record mt-2">
                 <p>Percentage</p>
-                <h2>1.000</h2>
+                <h2>{{win_pct}}%</h2>
             </div>
         </div>
 
@@ -133,10 +133,21 @@
                             {% endif %}
                         </div>
                     </span>
-                    <div>
-                        <h5>{{game.date}}</h5>
-                        <h5>{{game.time}}</h5>
-                    </div>
+                    {% if game.outcome == 0 %}
+                        <div>
+                            <h5>Loss, {{game.maces_score}}-{{game.opponent_score}}</h5>
+                        </div>
+                    {% elif game.outcome == 1 %}
+                        <div>
+                            <h5>Win, {{game.maces_score}}-{{game.opponent_score}}</h5>
+                        </div>
+                    {% else %}
+                        <div>
+                            <h5>{{game.date}}</h5>
+                            <h5>{{game.time}}</h5>
+                        </div>
+                    {% endif %}
+
                 </div>
             {% endfor %}
         {% endif %}

@@ -3,6 +3,7 @@ from flask_app import app
 from flask_app.models.game import Game
 from flask_app.models.season import Season
 from flask_app.models.user import User
+import math
 
 
 
@@ -21,5 +22,7 @@ def schedule():
             'season_id': season.id
         }
         games = Game.get_all_in_season(data)
-    return render_template('schedule.html', games = games, user = user)
+        record = Game.get_record_in_season(data)
+        win_pct = round(record['wins']/(record['wins'] + record['losses']) * 100, 1) 
+    return render_template('schedule.html', games = games, user = user, record = record, win_pct = win_pct)
 

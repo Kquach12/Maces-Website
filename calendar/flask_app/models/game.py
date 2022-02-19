@@ -34,13 +34,20 @@ class Game:
 
     @classmethod
     def get_all_in_season(cls, data):
-        query = "SELECT * FROM games WHERE season_id= %(season_id)s ORDER BY id ASC;"
+        query = "SELECT * FROM games WHERE season_id= %(season_id)s ORDER BY date ASC;"
         results = connectToMySQL('maces_schema').query_db(query, data)
         games = []
         if len(results) > 0:
             for game in results:
                 games.append( cls(game) )
         return games
+
+
+    @classmethod
+    def get_record_in_season(cls, data):
+        query = "SELECT SUM( CASE WHEN outcome = 1 THEN 1 ELSE 0 END) AS wins, SUM( CASE WHEN outcome = 0 THEN 1 ELSE 0 END) AS losses FROM games WHERE season_id= %(season_id)s;"
+        results = connectToMySQL('maces_schema').query_db(query, data)
+        return results[0]
 
     @classmethod
     def get_upcoming_in_season(cls):
