@@ -43,7 +43,7 @@
 
     <div class="container">
         <h4 class="d-flex justify-content-center mt-3 mb-2 subtitle">TEAM STATS</h4>
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-around align-items-center">
             <div class="record mt-2">
                 <p>Pts Per Game</p>
                 <h3>40.5</h3>
@@ -222,6 +222,22 @@
                     <td>30%</td>
                     <td>60%</td>
                 </tr>
+                {% for player in players_stats %}
+                    <tr>
+                        <td>{{player.player.number}}</td>
+                        <td>{{player.player.first_name}} {{player.player.last_name}}</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ '{0:0.1f}'.format(player.points) }}</td>
+                        <td>{{ '{0:0.1f}'.format(player.assists) }}</td>
+                        <td>{{ '{0:0.1f}'.format(player.rebounds) }}</td>
+                        <td>{{ '{0:0.1f}'.format(player.steals) }}</td>
+                        <td>{{ '{0:0.1f}'.format(player.blocks) }}</td>
+                        <td>{{ '{0:0.1f}'.format(player.turnovers) }}</td>
+                        <td>{{ '{0:0.1f}'.format(player.made_shots/player.attempted_shots * 100) }}%</td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
