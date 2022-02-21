@@ -16,5 +16,5 @@ def stats():
             'season_id': season.id
         }
         players_stats = Stat.get_average_of_all_players_by_season(data)
-
-    return render_template('statistics.html', players_stats = players_stats)
+        team_stats = Stat.get_average_of_team_by_season(data)
+    return render_template('statistics.html', players_stats = players_stats, team_stats = team_stats)

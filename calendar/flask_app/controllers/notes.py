@@ -24,8 +24,7 @@ def announcements():
         reminders = Reminder.get_all()
         # notes = Note.get_all_in_season_with_games(data)
         notes = Note.get_all()
-        print(games)
-        print(len(notes))
+
 
         #use algo to append notes to each game without using nested loop, after sorting queries
         gameIdx = 0

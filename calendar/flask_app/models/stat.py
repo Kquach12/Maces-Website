@@ -53,6 +53,12 @@ class Stat:
         return stats
 
     @classmethod
+    def get_average_of_team_by_season(cls, data):
+        query = "SELECT stats.id, AVG(points) AS points, AVG(rebounds) AS rebounds, AVG(assists) AS assists, AVG(steals) AS steals, AVG(blocks) AS blocks, AVG(turnovers) AS turnovers, AVG(made_shots) AS made_shots, AVG(attempted_shots) AS attempted_shots, stats.created_at, stats.updated_at, player_id, game_id, season_id  FROM stats LEFT JOIN players ON stats.player_id = players.id WHERE season_id = %(season_id)s;"
+        results = connectToMySQL('maces_schema').query_db(query,data)
+        return cls(results[0])
+
+    @classmethod
     def save(cls, data):
         query = "INSERT INTO stats (points, rebounds, assists, steals, blocks, turnovers, made_shots, attempted_shots, created_at, updated_at, game_id, player_id ) VALUES (%(points)s, %(rebounds)s, %(assists)s, %(steals)s, %(blocks)s, %(turnovers)s, %(made_shots)s, %(attempted_shots)s, NOW() , NOW(), %(game_id)s, %(player_id)s);"
         return connectToMySQL('maces_schema').query_db( query, data )

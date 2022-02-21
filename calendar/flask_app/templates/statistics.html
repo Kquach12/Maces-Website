@@ -46,31 +46,31 @@
         <div class="d-flex justify-content-around align-items-center">
             <div class="record mt-2">
                 <p>Pts Per Game</p>
-                <h3>40.5</h3>
+                <h3>{{ '{0:0.1f}'.format(team_stats.points) }}</h3>
             </div>
             <div class="record mt-2">
                 <p>Reb Per Game</p>
-                <h3>20.2</h3>
+                <h3>{{ '{0:0.1f}'.format(team_stats.rebounds) }}</h3>
             </div>
             <div class="record mt-2">
                 <p>Ast Per Game</p>
-                <h3>14.3</h3>
+                <h3>{{ '{0:0.1f}'.format(team_stats.assists) }}</h3>
             </div>
             <div class="record mt-2">
                 <p>Stl Per Game</p>
-                <h3>5.0</h3>
+                <h3>{{ '{0:0.1f}'.format(team_stats.steals) }}</h3>
             </div>
             <div class="record mt-2">
                 <p>Blk Per Game</p>
-                <h3>1.0</h3>
+                <h3>{{ '{0:0.1f}'.format(team_stats.blocks) }}</h3>
             </div>
             <div class="record mt-2">
                 <p>TOs Per Game</p>
-                <h3>10.0</h3>
+                <h3>{{ '{0:0.1f}'.format(team_stats.turnovers) }}</h3>
             </div>
             <div class="record mt-2">
                 <p>FG%</p>
-                <h3>45.2%</h3>
+                <h3>{{ '{0:0.1f}'.format(team_stats.made_shots/team_stats.attempted_shots * 100) }}%</h3>
             </div>
             <div class="record mt-2">
                 <p>FT%</p>
