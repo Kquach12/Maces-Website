@@ -20,19 +20,19 @@ def announcements():
         data ={
             'season_id': season.id
         }
-        games = Game.get_all_in_season(data)
         reminders = Reminder.get_all()
-        # notes = Note.get_all_in_season_with_games(data)
+        games = Game.get_all_in_season(data)
         notes = Note.get_all()
-
 
         #use algo to append notes to each game without using nested loop, after sorting queries
         gameIdx = 0
         noteIdx = 0
         while noteIdx < len(notes):
+            #if note's game id doesn't match game's id, move on to the next game
             if notes[noteIdx].game_id != games[gameIdx].id:
                 gameIdx += 1
             else:
+            #if note's game id matches game's id, append note, and move on to the next note
                 games[gameIdx].notes.append(notes[noteIdx])
                 noteIdx += 1
 
