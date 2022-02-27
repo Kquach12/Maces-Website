@@ -37,5 +37,6 @@ def get_data(id):
         }
     # jsonify will serialize data into JSON format.
     games = Game.get_all_in_season_json(data)
-    print(games)
-    return jsonify(games)
+    record = Game.get_record_in_season(data)
+    win_pct = round(record['wins']/(record['wins'] + record['losses']) * 100, 1) 
+    return jsonify(games, win_pct, record)

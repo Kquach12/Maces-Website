@@ -4,30 +4,38 @@ function getGames(seasonId){
     fetch(`http://localhost:5000/get_games/${seasonId}`)
         .then( response => response.json() )
         .then( data => {
-            console.log(data) 
-            // TODO: change below to correct div later on
+            console.log(data)
             let gamesDiv = document.getElementById('gamesDiv')
+            let winPctId = document.getElementById('winPctId')
+            let recordId = document.getElementById('recordId')
             gamesDiv.innerHTML = ''
 
-            for (let i = 0; i < data.length; i++){
+            gamesArray = data[0]
+            winPct = data[1]
+            record = data[2]
+
+            winPctId.innerHTML = `${winPct}%`
+            recordId.innerHTML = `${record['wins']} - ${record['losses']}`
+
+            for (let i = 0; i < gamesArray.length; i++){
                 
                 let locationClass = 'schedule-game-home'
                 let level = 'Varsity'
-                let outComeDiv = `${data[i]['date']} <br> ${data[i]['time']}`
+                let outComeDiv = `${gamesArray[i]['date']} <br> ${gamesArray[i]['time']}`
 
-                if (data[i]['location'] == 'away'){
+                if (gamesArray[i]['location'] == 'away'){
                     locationClass = 'schedule-game-away'
                 }
 
-                if (data[i]['level'] == 1){
+                if (gamesArray[i]['level'] == 1){
                     level = 'JV'
                 }
 
-                if (data[i]['outcome'] == 0){
-                    outComeDiv = `Loss, ${data[i]['maces_score']} - ${data[i]['opponent_score']}`
+                if (gamesArray[i]['outcome'] == 0){
+                    outComeDiv = `Loss, ${gamesArray[i]['maces_score']} - ${gamesArray[i]['opponent_score']}`
                 }
-                else if (data[i]['outcome'] == 1){
-                    outComeDiv = `Win, ${data[i]['maces_score']} - ${data[i]['opponent_score']}`
+                else if (gamesArray[i]['outcome'] == 1){
+                    outComeDiv = `Win, ${gamesArray[i]['maces_score']} - ${gamesArray[i]['opponent_score']}`
                 }
 
                 res = `
@@ -35,7 +43,7 @@ function getGames(seasonId){
                         <span class="d-flex justify-content-center align-items-center">
                             <img src="../static/images/logo2.PNG" alt="" style="width: 100px;">
                             <div class="ml-5">
-                                <h3>${data[i]['opponent']}</h3>
+                                <h3>${gamesArray[i]['opponent']}</h3>
                                 <h5>${level}</h5>
                             </div>
                         </span>
