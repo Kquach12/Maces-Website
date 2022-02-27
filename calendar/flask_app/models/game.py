@@ -6,6 +6,7 @@ from flask_app.models import note
 
 
 class Game:
+    db="maces_schema"
     def __init__( self , data ):
         self.id = data['id']
         self.location = data['location']
@@ -40,6 +41,17 @@ class Game:
         if len(results) > 0:
             for game in results:
                 games.append( cls(game) )
+        return games
+
+    @classmethod
+    def get_all_in_season_json(cls, data):
+        query = "SELECT * FROM games WHERE season_id= %(season_id)s ORDER BY date ASC;"
+        results = connectToMySQL(cls.db).query_db(query, data)
+        games = []
+        if len(results) > 0:
+            for game in results:
+                game['time']= str(game['time'])
+                games.append( game )
         return games
 
 
