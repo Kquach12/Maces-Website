@@ -50,6 +50,7 @@ class Game:
         games = []
         if len(results) > 0:
             for game in results:
+                game['date'] = str(game['date'])
                 game['time']= str(game['time'])
                 games.append( game )
         return games

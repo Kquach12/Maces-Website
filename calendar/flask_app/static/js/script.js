@@ -1,12 +1,13 @@
-function getGames(event){
-    // console.log(event.target.value)
+function getGames(seasonId){
+    // console.log(id)
     // event.preventDefault()
-    fetch(`http://localhost:5000/get_games/${event.target.value}`)
+    fetch(`http://localhost:5000/get_games/${seasonId}`)
         .then( response => response.json() )
         .then( data => {
             console.log(data) 
             // TODO: change below to correct div later on
-            let testDiv = document.getElementById('testDiv')
+            let gamesDiv = document.getElementById('gamesDiv')
+            gamesDiv.innerHTML = ''
 
             for (let i = 0; i < data.length; i++){
                 
@@ -38,10 +39,10 @@ function getGames(event){
                                 <h5>${level}</h5>
                             </div>
                         </span>
-                        <div>${outComeDiv}</div>
+                        <div><h5>${outComeDiv}</h5></div>
                     </div>
                 `
-                testDiv.innerHTML = testDiv.innerHTML + res
+                gamesDiv.innerHTML = gamesDiv.innerHTML + res
 
             }
         })
