@@ -24,6 +24,25 @@ class Player:
             players.append( cls(player) )
         return players
 
+#gets player that are in a certain season_id***Need to add dynamically
+    @classmethod
+    def get_season_info(cls):
+        varQuery = "SELECT * FROM players WHERE season_id = 4 AND level = 'varsity';"
+        results = connectToMySQL('maces_schema').query_db(varQuery)
+        varsityPlayers = []
+
+        for player in results:
+            varsityPlayers.append( cls(player) )
+
+        jVQuery = "SELECT * FROM players WHERE season_id = 4 AND level = 'jv';"
+        results = connectToMySQL('maces_schema').query_db(jVQuery)
+        jvPlayers = []
+
+        for player in results:
+            jvPlayers.append( cls(player) )
+
+        return varsityPlayers,jvPlayers
+
     @classmethod
     def save(cls, data):
         query = "INSERT INTO players (first_name, last_name, number, level, description, created_at, updated_at, season_id ) VALUES (%(first_name)s, %(last_name)s, %(number)s, %(level)s, %(description)s, NOW() , NOW(), %(season_id)s );"
