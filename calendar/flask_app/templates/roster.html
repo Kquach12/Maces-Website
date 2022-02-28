@@ -101,14 +101,14 @@
                     <!-- PLAYER GRID -->
                     <div class="container">
                         <div class="row">
-
+                            {% for player in varsity%}
                             <div class="col">
                                 <div class="card col" style="width: 14rem;" data-bs-toggle="modal"
                                     data-bs-target="#modal1">
                                     <img
                                         src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842">
                                     <div class="card-body">
-                                        <h3>Anna Sample</h3>
+                                        <h3>{{player.first_name}} {{player.last_name}}</h3>
 
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal1" tabindex="-1"
@@ -116,8 +116,8 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Anna
-                                                            Sample #01</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            {{player.first_name}} {{player.last_name}} | {{player.number}}</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
@@ -125,12 +125,7 @@
                                                         <img src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842"
                                                             width="300px">
 
-                                                        <p>About player goes here . Lorem ipsum dolor sit
-                                                            amet consectetur adipisicing elit. Enim totam
-                                                            quam, nam soluta inventore facilis animi
-                                                            architecto hic tempore at vitae, eum incidunt
-                                                            praesentium iusto consequatur alias molestiae.
-                                                            Necessitatibus, pariatur.</p>
+                                                        <p>{{player.description}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,52 +133,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col">
-                                <div class="card col" style="width: 14rem;" data-bs-toggle="modal"
-                                    data-bs-target="#modal2">
-                                    <img
-                                        src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842">
-                                    <div class="card-body">
-                                        <h3>Anna Sample</h3>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="modal2" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Anna
-                                                            Sample #02</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <img src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842"
-                                                            width="300px">
-
-                                                        <p>About player goes here . Lorem ipsum dolor sit
-                                                            amet consectetur adipisicing elit. Enim totam
-                                                            quam, nam soluta inventore facilis animi
-                                                            architecto hic tempore at vitae, eum incidunt
-                                                            praesentium iusto consequatur alias molestiae.
-                                                            Necessitatibus, pariatur.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            
-
-
-
-
-
-
-
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -203,14 +153,14 @@
                     <!-- PLAYER GRID -->
                     <div class="container">
                         <div class="row">
-
+                            {% for player in jv%}
                             <div class="col">
                                 <div class="card col" style="width: 14rem;" data-bs-toggle="modal"
                                     data-bs-target="#modal3">
                                     <img
                                         src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842">
                                     <div class="card-body">
-                                        <h3>Anna Sample</h3>
+                                        <h3>{{player.first_name}} {{player.last_name}}</h3>
 
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal3" tabindex="-1"
@@ -227,103 +177,6 @@
                                                         <img src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842"
                                                             width="300px">
 
-                                                        <p>About player goes here . Lorem ipsum dolor sit
-                                                            amet consectetur adipisicing elit. Enim totam
-                                                            quam, nam soluta inventore facilis animi
-                                                            architecto hic tempore at vitae, eum incidunt
-                                                            praesentium iusto consequatur alias molestiae.
-                                                            Necessitatibus, pariatur.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card col" style="width: 14rem;" data-bs-toggle="modal"
-                                    data-bs-target="#modal4">
-                                    <img
-                                        src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842">
-                                    <div class="card-body">
-                                        <h3>Anna Sample</h3>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="modal4" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Anna
-                                                            Sample #04</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <img src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842"
-                                                            width="300px">
-
-                                                        <p>About player goes here . Lorem ipsum dolor sit
-                                                            amet consectetur adipisicing elit. Enim totam
-                                                            quam, nam soluta inventore facilis animi
-                                                            architecto hic tempore at vitae, eum incidunt
-                                                            praesentium iusto consequatur alias molestiae.
-                                                            Necessitatibus, pariatur.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-
-
-                </div>
-            </div>
-
-            <!--JUNIOR VARSITY TEAM-->
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFive">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    <h3>Testing Database </h3>
-                  </button>
-                </h2>
-                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                    data-bs-parent="#accordionExample">
-
-                    <!-- PLAYER GRID -->
-                    <div class="container">
-                        <div class="row">
-                            {% for player in players%}
-                            
-                            <div class="col">
-                                <div class="card col" style="width: 14rem;" data-bs-toggle="modal"
-                                    data-bs-target="{{'#player_modal' + player.id|string}}">
-                                    <img
-                                        src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842">
-                                    <div class="card-body">
-                                        <h3>{{player.first_name}} {{player.last_name}}</h3>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="{{'player_modal' + player.id|string}}" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">{{player.first_name}} {{player.last_name}} {{player.number}}</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <img src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842"
-                                                            width="300px">
-
                                                         <p>{{player.description}}</p>
                                                     </div>
                                                 </div>
@@ -332,18 +185,12 @@
                                     </div>
                                 </div>
                             </div>
-
                             {% endfor %}
-
 
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
-
 
 
         </div>

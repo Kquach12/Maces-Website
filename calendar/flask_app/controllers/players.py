@@ -13,6 +13,7 @@ def roster():
             "id": session['user_id']
         }
         user = User.get_one(data)
-    players = Player.get_all()
-    return render_template('roster.html', players = players, user = user)
+    varsity, jv = Player.get_season_info()
+    print(varsity)
+    return render_template('roster.html', varsity = varsity, jv=jv, user = user)
 
