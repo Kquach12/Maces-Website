@@ -57,41 +57,27 @@ function getGames(seasonId){
         
 }
 
+function getStats(seasonId){
+    // console.log(id)
+    // event.preventDefault()
+    fetch(`http://localhost:5000/get_stats/${seasonId}`)
+        .then( response => response.json() )
+        .then( data => {
+            console.log(data)
+        })
+        
+}
 
 
-// {%if games%}
-//             {% for game in games %}
-//             {% if game.location == 'home'%}
-//                 <div class="schedule-game-home d-flex justify-content-between align-items-center mb-3">
-//             {% else %}
-//                 <div class="schedule-game-away d-flex justify-content-between align-items-center mb-3">
-//             {% endif %}
-//                     <span class="d-flex justify-content-center align-items-center">
-//                         <img src="../static/images/logo2.PNG" alt="" style="width: 100px;">
-//                         <div class="ml-5">
-//                             <h3>{{game.opponent}}</h3>
-//                             {% if game.level ==0%}
-//                                 <h5>Varsity</h5>
-//                             {% else %}
-//                                 <h5>JV</h5>
-//                             {% endif %}
-//                         </div>
-//                     </span>
-//                     {% if game.outcome == 0 %}
-//                         <div>
-//                             <h5>Loss, {{game.maces_score}}-{{game.opponent_score}}</h5>
-//                         </div>
-//                     {% elif game.outcome == 1 %}
-//                         <div>
-//                             <h5>Win, {{game.maces_score}}-{{game.opponent_score}}</h5>
-//                         </div>
-//                     {% else %}
-//                         <div>
-//                             <h5>{{game.date}}</h5>
-//                             <h5>{{game.time}}</h5>
-//                         </div>
-//                     {% endif %}
+//SAVE FORM TO DATABASE AJAX
 
-//                 </div>
-//             {% endfor %}
-//         {% endif %}
+// let myForm = document.getElementById('form')
+
+// document.getElementById('submit').addEventListener("click", function(event){
+//     event.preventDefault()
+//     let form = new FormData(myForm)
+//     fetch("/save/note", { method :'POST', body : form})
+//             .then( response => response.json() )
+//             .then( data => console.log(data) )
+//     submit()
+// })

@@ -31,7 +31,6 @@ def schedule():
 
 @app.route('/get_games/<int:id>', methods=['GET'])
 def get_data(id):
-    print('hi')
     data ={
             'season_id': id
         }

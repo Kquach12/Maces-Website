@@ -17,4 +17,17 @@ def stats():
         }
         players_stats = Stat.get_average_of_all_players_by_season(data)
         team_stats = Stat.get_average_of_team_by_season(data)
-    return render_template('statistics.html', players_stats = players_stats, team_stats = team_stats)
+        seasons = Season.get_all()
+    return render_template('statistics.html', players_stats = players_stats, team_stats = team_stats, seasons = seasons)
+
+
+
+@app.route('/get_stats/<int:id>', methods=['GET'])
+def get_stats(id):
+    data ={
+            'season_id': id
+        }
+    # jsonify will serialize data into JSON format.
+    players_stats = Stat.get_average_of_all_players_by_season(data)
+    team_stats = Stat.get_average_of_team_by_season(data)
+    return jsonify(player_stats, team_stats)
