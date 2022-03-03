@@ -46,8 +46,6 @@
 
 
     <h3 class="d-flex justify-content-center mt-2 title">COACH AND ROSTER</h3>
-
-
     <div class="container">
         <!--          SEASON DROPDOWN                  -->
         <div class="dropdown">
@@ -56,15 +54,15 @@
                 Season
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <li><button class="dropdown-item" type="button">2019-2020</button></li>
-                <li><button class="dropdown-item" type="button">2020-2021</button></li>
-                <li><button class="dropdown-item" type="button">2021-2022</button></li>
+                {% for season in seasons %}
+                <li><a href="{{url_for('roster', season=season.id)}}">{{season.start_year}} - {{season.end_year}}</a></li>
+                {% endfor %}
             </ul>
         </div>
 
 
-        <!--                        ACCORDIAN OF COACH AND TEAMS        -->
-
+        <!--        DISPLAY  COACH AND TEAM          -->
+        {% if recentVar and recentJv %}
         <div class="accordion" id="accordionExample">
             <!--COACH-->
             <div class="accordion-item">
@@ -101,7 +99,7 @@
                     <!-- PLAYER GRID -->
                     <div class="container">
                         <div class="row">
-                            {% for player in varsity%}
+                            {% for player in recentVar%}
                             <div class="col">
                                 <div class="card col" style="width: 14rem;" data-bs-toggle="modal"
                                     data-bs-target="#modal1">
@@ -153,7 +151,7 @@
                     <!-- PLAYER GRID -->
                     <div class="container">
                         <div class="row">
-                            {% for player in jv%}
+                            {% for player in recentJv%}
                             <div class="col">
                                 <div class="card col" style="width: 14rem;" data-bs-toggle="modal"
                                     data-bs-target="#modal3">
@@ -168,8 +166,9 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Anna
-                                                            Sample #03</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                            {{player.first_name}} {{player.last_name}} |
+                                                            {{player.number}}</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
@@ -194,8 +193,139 @@
 
 
         </div>
+        {% else %}
+<!--                        ACCORDIAN OF COACH AND TEAMS        -->
+
+<div class="accordion" id="accordionExample">
+    <!--COACH-->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                <h3>COACH</h3>
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <img src="https://cdn-icons.flaticon.com/png/512/2585/premium/2585583.png?token=exp=1642208909~hmac=51e0b4a88039c60dec15275f03174eff"
+                    width="200px" style="margin-left: auto;">
+                <h3>Coach Name Here</h3>
+                <p> Coach description goes here. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Officiis cumque vero laudantium ducimus minima iste laborum enim blanditiis, vitae culpa
+                    sapiente libero aspernatur quam pariatur sint recusandae, placeat repellat est! </p>
+            </div>
+        </div>
+    </div>
+
+    <!--VARSITY TEAM-->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <h3>VARSITY TEAM</h3>
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+            data-bs-parent="#accordionExample">
+
+            <!-- PLAYER GRID -->
+            <div class="container">
+                <div class="row">
+                    {% for player in varsity%}
+                    <div class="col">
+                        <div class="card col" style="width: 14rem;" data-bs-toggle="modal" data-bs-target="#modal1">
+                            <img
+                                src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842">
+                            <div class="card-body">
+                                <h3>{{player.first_name}} {{player.last_name}}</h3>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                    {{player.first_name}} {{player.last_name}} | {{player.number}}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842"
+                                                    width="300px">
+
+                                                <p>{{player.description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    <!--JUNIOR VARSITY TEAM-->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h3>Junior Varsity </h3>
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+            data-bs-parent="#accordionExample">
+
+            <!-- PLAYER GRID -->
+            <div class="container">
+                <div class="row">
+                    {% for player in jv%}
+                    <div class="col">
+                        <div class="card col" style="width: 14rem;" data-bs-toggle="modal" data-bs-target="#modal3">
+                            <img
+                                src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842">
+                            <div class="card-body">
+                                <h3>{{player.first_name}} {{player.last_name}}</h3>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">
+                                                    {{player.first_name}} {{player.last_name}} |
+                                                    {{player.number}}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="https://cdn-icons.flaticon.com/png/512/2102/premium/2102647.png?token=exp=1642209318~hmac=0ca3d12c4ecbfea1c358e2f0cc282842"
+                                                    width="300px">
+
+                                                <p>{{player.description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+        {% endif %}
 
 
     </div>
