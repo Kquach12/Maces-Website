@@ -65,14 +65,10 @@ class Stat:
                 'first_name': results[i]['first_name'],
                 'last_name': results[i]['last_name'],
                 'number': results[i]['number'],
-                'level': None,
-                'description': None,
-                'created_at': None,
-                'updated_at': None,
                 'season_id': results[i]['season_id']
             }
             print(stats[i])
-            stats[i]['player_id'] = p
+            stats[i]['player'] = p
             
         return stats
 

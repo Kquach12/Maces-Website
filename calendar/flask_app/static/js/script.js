@@ -64,6 +64,40 @@ function getStats(seasonId){
         .then( response => response.json() )
         .then( data => {
             console.log(data)
+            let statsBody = document.getElementById('stats-body')
+            statsBody.innerHTML = ''
+            playersArray = data[0]
+            teamStatsObj = data[1]
+
+
+            document.getElementById('team-ppg').innerHTML = Number(teamStatsObj['points']).toFixed(1)
+            document.getElementById('team-rpg').innerHTML = Number(teamStatsObj['rebounds']).toFixed(1)
+            document.getElementById('team-apg').innerHTML = Number(teamStatsObj['assists']).toFixed(1)
+            document.getElementById('team-spg').innerHTML = Number(teamStatsObj['steals']).toFixed(1)
+            document.getElementById('team-bpg').innerHTML = Number(teamStatsObj['blocks']).toFixed(1)
+            document.getElementById('team-tpg').innerHTML = Number(teamStatsObj['turnovers']).toFixed(1)
+            document.getElementById('team-fg').innerHTML = `${(Number(teamStatsObj['made_shots'])/Number(teamStatsObj['attempted_shots']) * 100).toFixed(1)}%`
+            document.getElementById('team-ft').innerHTML = '50%'
+
+            for (i=0; i < playersArray.length; i++){
+                res = `
+                    <tr>
+                        <td>${playersArray[i].number}</td>
+                        <td>${playersArray[i].first_name} ${playersArray[i].last_name}</td>
+                        <td></td>
+                        <td></td>
+                        <td>${ Number(playersArray[i].points).toFixed(1)}</td>
+                        <td>${ Number(playersArray[i].assists).toFixed(1) }</td>
+                        <td>${ Number(playersArray[i].rebounds).toFixed(1) }</td>
+                        <td>${ Number(playersArray[i].steals).toFixed(1) }</td>
+                        <td>${ Number(playersArray[i].blocks).toFixed(1) }</td>
+                        <td>${ Number(playersArray[i].turnovers).toFixed(1) }</td>
+                        <td>${ Number(playersArray[i].made_shots/playersArray[i].attempted_shots * 100).toFixed(1) }%</td>
+                        <td></td>
+                    </tr>
+                `
+                statsBody.innerHTML = statsBody.innerHTML + res
+            }
         })
         
 }
