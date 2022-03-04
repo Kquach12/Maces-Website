@@ -51,12 +51,42 @@ class Stat:
             stats[i].player = player.Player(p)
             
         return stats
+    
+    
+    @classmethod
+    def get_average_of_all_players_by_season_json(cls, data):
+        query = "SELECT stats.id, AVG(points) AS points, AVG(rebounds) AS rebounds, AVG(assists) AS assists, AVG(steals) AS steals, AVG(blocks) AS blocks, AVG(turnovers) AS turnovers, AVG(made_shots) AS made_shots, AVG(attempted_shots) AS attempted_shots, first_name, last_name, number, stats.created_at, stats.updated_at, player_id, game_id, season_id  FROM stats LEFT JOIN players ON stats.player_id = players.id WHERE season_id = %(season_id)s GROUP BY player_id;"
+        results = connectToMySQL('maces_schema').query_db(query,data)
+        stats = []
+        for i in range(len(results)):
+            stats.append(results[i])
+            p = {
+                'id': results[i]['player_id'],
+                'first_name': results[i]['first_name'],
+                'last_name': results[i]['last_name'],
+                'number': results[i]['number'],
+                'level': None,
+                'description': None,
+                'created_at': None,
+                'updated_at': None,
+                'season_id': results[i]['season_id']
+            }
+            print(stats[i])
+            stats[i]['player_id'] = p
+            
+        return stats
 
     @classmethod
     def get_average_of_team_by_season(cls, data):
         query = "SELECT stats.id, SUM(points)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS points, SUM(rebounds)/(SELECT COUNT( DISTINCT game_id ) FROM stats)  AS rebounds, SUM(assists)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS assists, SUM(steals)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS steals, SUM(blocks)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS blocks, SUM(turnovers)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS turnovers, SUM(made_shots)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS made_shots, SUM(attempted_shots)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS attempted_shots, stats.created_at, stats.updated_at, player_id, game_id, season_id  FROM stats LEFT JOIN players ON stats.player_id = players.id WHERE season_id = %(season_id)s;"
         results = connectToMySQL('maces_schema').query_db(query,data)
         return cls(results[0])
+
+    @classmethod
+    def get_average_of_team_by_season_json(cls, data):
+        query = "SELECT stats.id, SUM(points)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS points, SUM(rebounds)/(SELECT COUNT( DISTINCT game_id ) FROM stats)  AS rebounds, SUM(assists)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS assists, SUM(steals)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS steals, SUM(blocks)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS blocks, SUM(turnovers)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS turnovers, SUM(made_shots)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS made_shots, SUM(attempted_shots)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS attempted_shots, stats.created_at, stats.updated_at, player_id, game_id, season_id  FROM stats LEFT JOIN players ON stats.player_id = players.id WHERE season_id = %(season_id)s;"
+        results = connectToMySQL('maces_schema').query_db(query,data)
+        return results[0]
 
     @classmethod
     def save(cls, data):
