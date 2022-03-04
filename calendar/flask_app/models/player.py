@@ -26,16 +26,18 @@ class Player:
 
 #gets player that are in a certain season_id***Need to add dynamically
     @classmethod
-    def get_season_info(cls):
-        varQuery = "SELECT * FROM players WHERE season_id = 4 AND level = 'varsity';"
-        results = connectToMySQL('maces_schema').query_db(varQuery)
+    def get_season_info(cls, data):
+        print(data);
+
+        varQuery = "SELECT * FROM players WHERE season_id = %(season)s AND level = 'varsity';"
+        results = connectToMySQL('maces_schema').query_db(varQuery,data)
         varsityPlayers = []
 
         for player in results:
             varsityPlayers.append( cls(player) )
 
-        jVQuery = "SELECT * FROM players WHERE season_id = 4 AND level = 'jv';"
-        results = connectToMySQL('maces_schema').query_db(jVQuery)
+        jVQuery = "SELECT * FROM players WHERE season_id = %(season)s AND level = 'jv';"
+        results = connectToMySQL('maces_schema').query_db(jVQuery,data)
         jvPlayers = []
 
         for player in results:
