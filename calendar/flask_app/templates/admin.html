@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/admin.css">
+    <link rel="stylesheet" href="../static/css/announcements.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"> defer
+    </script>
+    <script src="../static/js/script.js" defer></script>
+</head>
+<body style="background-color: rgb(228, 228, 228);">
+        <!--                                NAVBAR                                                                         -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white d-flex justify-content-between border-navy">
+        <div class="d-flex justify-content-between align-items-center">
+            <a class="navbar-brand" href="#"><img src="../static/images/logo.png" class="logo"></a>
+            <div class="d-flex justify-content-between ml-2">
+                <a href="/" class="ml-2 mr-2 font-weight-bold navbar-link">Home</a> |
+                <a href="/roster" class="ml-2 mr-2 font-weight-bold navbar-link">Roster</a> |
+                <a href="/schedule" class="ml-2 mr-2 font-weight-bold navbar-link">Schedule</a> |
+                <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Merchandise</a>
+                | <a href="/announcements" class="ml-2 mr-2 font-weight-bold navbar-link">Announcements</a> |
+                <a href="#" class="ml-2 mr-2 font-weight-bold navbar-link">Stats</a> 
+            </div>
+        </div>
+        <div class="my-2 my-lg-0">
+            <a href="/logout" class="font-weight-bold navbar-link">Logout</a>
+                
+        </div>
+    </nav>
+
+        <!--                                NAVBAR END                                                                         -->
+
+        <!--                                TITLE                                                                         -->
+
+    <h3 class="d-flex justify-content-center mt-2 title">ADMIN</h3>
+        <!--                                TITLE END                                                                         -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2 class="announcements-subheader">Seasons</h2>
+                <div class="d-flex justify-content-center season-buttons-div">
+                    {% for season in seasons %}
+                        <button class="season-button mb-2">{{season.start_year}}-{{season.end_year}}</button>
+                    {% endfor %}
+                    <button class="season-button">1999-2000</button>
+
+                </div>
+            </div>
+            <div class="col">
+                <h2 class="announcements-subheader">Accounts</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -3,6 +3,8 @@ from flask_app import app
 from flask_app.models.user import User
 from flask_bcrypt import Bcrypt
 from flask_app.models.game import Game
+from flask_app.models.season import Season
+from flask_app.models.eligible_email import Eligible_email
 
 bcrypt = Bcrypt(app)
 
@@ -72,3 +74,18 @@ def home():
         user = User.get_one(data)
     games = Game.get_upcoming_in_season()
     return render_template("home.html", games = games, user = user)
+
+@app.route('/admin')
+def admin_page():
+    if 'user_id' not in session:
+        redirect('/')
+    user = User.get_one({"id": session['user_id']})
+    if user.is_admin != 1:
+        redirect('/')
+
+    eligible_emails = Eligible_email.get_all()
+
+    seasons = Season.get_all()
+
+    return render_template("admin.html", seasons=seasons)
+
