@@ -84,7 +84,11 @@
             </div>
             <div class="record mt-2">
                 <p>FG%</p>
-                <h3 id="team-fg">{{ '{0:0.1f}'.format(team_stats.made_shots/team_stats.attempted_shots * 100) }}%</h3>
+                {% if team_stats.made_shots == 0%}
+                    <h3 id="team-fg">0.0%</h3>
+                {% else %}
+                    <h3 id="team-fg">{{ '{0:0.1f}'.format(team_stats.made_shots/team_stats.attempted_shots * 100) }}%</h3>
+                {% endif %}
             </div>
             <div class="record mt-2">
                 <p>FT%</p>
@@ -110,132 +114,6 @@
                 </tr>
             </thead>
             <tbody id="stats-body">
-                <tr>
-                    <td>5</td>
-                    <td>Kobe Carl</td>
-                    <td>Senior</td>
-                    <td>G</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>30%</td>
-                    <td>60%</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Kobe Carl</td>
-                    <td>Senior</td>
-                    <td>G</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>30%</td>
-                    <td>60%</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Kobe Carl</td>
-                    <td>Senior</td>
-                    <td>G</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>30%</td>
-                    <td>60%</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Kobe Carl</td>
-                    <td>Senior</td>
-                    <td>G</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>30%</td>
-                    <td>60%</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Kobe Carl</td>
-                    <td>Senior</td>
-                    <td>G</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>30%</td>
-                    <td>60%</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Kobe Carl</td>
-                    <td>Senior</td>
-                    <td>G</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>30%</td>
-                    <td>60%</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Kobe Carl</td>
-                    <td>Senior</td>
-                    <td>G</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>30%</td>
-                    <td>60%</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Kobe Carl</td>
-                    <td>Senior</td>
-                    <td>G</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>30%</td>
-                    <td>60%</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Kobe Carl</td>
-                    <td>Senior</td>
-                    <td>G</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>5</td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>30%</td>
-                    <td>60%</td>
-                </tr>
                 {% for player in players_stats %}
                     <tr>
                         <td>{{player.player.number}}</td>

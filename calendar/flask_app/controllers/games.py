@@ -24,7 +24,12 @@ def schedule():
         }
         games = Game.get_all_in_season(data)
         record = Game.get_record_in_season(data)
-        win_pct = round(record['wins']/(record['wins'] + record['losses']) * 100, 1) 
+        if record['wins'] != None and record['losses'] != None:
+            win_pct = round(record['wins']/(record['wins'] + record['losses']) * 100, 1) 
+        else:
+            win_pct = 0
+            record['wins'] = 0
+            record['losses'] = 0
     return render_template('schedule.html', games = games, user = user, record = record, win_pct = win_pct, seasons = seasons)
 
 

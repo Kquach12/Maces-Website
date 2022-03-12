@@ -74,9 +74,9 @@ class Stat:
 
     @classmethod
     def get_average_of_team_by_season(cls, data):
-        query = "SELECT stats.id, SUM(points)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS points, SUM(rebounds)/(SELECT COUNT( DISTINCT game_id ) FROM stats)  AS rebounds, SUM(assists)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS assists, SUM(steals)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS steals, SUM(blocks)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS blocks, SUM(turnovers)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS turnovers, SUM(made_shots)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS made_shots, SUM(attempted_shots)/(SELECT COUNT( DISTINCT game_id ) FROM stats) AS attempted_shots, stats.created_at, stats.updated_at, player_id, game_id, season_id  FROM stats LEFT JOIN players ON stats.player_id = players.id WHERE season_id = %(season_id)s;"
+        query = "SELECT stats.id, IFNULL(SUM(points)/(SELECT COUNT( DISTINCT game_id ) FROM stats), 0) AS points, IFNULL(SUM(rebounds)/(SELECT COUNT( DISTINCT game_id ) FROM stats), 0)  AS rebounds, IFNULL(SUM(assists)/(SELECT COUNT( DISTINCT game_id ) FROM stats),0) AS assists, IFNULL(SUM(steals)/(SELECT COUNT( DISTINCT game_id ) FROM stats),0) AS steals, IFNULL(SUM(blocks)/(SELECT COUNT( DISTINCT game_id ) FROM stats),0) AS blocks, IFNULL(SUM(turnovers)/(SELECT COUNT( DISTINCT game_id ) FROM stats),0) AS turnovers, IFNULL(SUM(made_shots)/(SELECT COUNT( DISTINCT game_id ) FROM stats),0) AS made_shots, IFNULL(SUM(attempted_shots)/(SELECT COUNT( DISTINCT game_id ) FROM stats),0) AS attempted_shots, stats.created_at, stats.updated_at, player_id, game_id, season_id  FROM stats LEFT JOIN players ON stats.player_id = players.id WHERE season_id = %(season_id)s;"
         results = connectToMySQL('maces_schema').query_db(query,data)
-        return cls(results[0])
+        return results[0]
 
     @classmethod
     def get_average_of_team_by_season_json(cls, data):
