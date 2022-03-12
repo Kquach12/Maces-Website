@@ -89,3 +89,12 @@ def admin_page():
 
     return render_template("admin.html", seasons=seasons)
 
+@app.route('/new/season', methods=['POST'])
+def new_season():
+    data = {
+        'start_year':request.form['start_year'],
+        'end_year': request.form['end_year']
+    }
+    Season.save(data)
+    return redirect('/admin')
+
